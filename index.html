@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -9,6 +10,7 @@
 body{margin:0;padding:20px;background:#101923;color:white;font-family:Arial}
 header{text-align:center;color:#38a5ff}
 .card{background:#1e2b39;padding:18px;margin:15px 0;border-radius:14px}
+select,input{width:100%;padding:13px;margin:8px 0;box-sizing:border-box;border-radius:8px}
 button{width:100%;padding:14px;background:#168be1;color:white;border:0;border-radius:10px;font-size:16px}
 p{color:#c4d2e0}
 </style>
@@ -18,21 +20,56 @@ p{color:#c4d2e0}
 <h1>🎮 QH Link Bypass</h1>
 <p>MINI APP KEY GAME</p>
 </header>
+
 <div class="card">
-<h3>🔑 Lấy key miễn phí</h3>
-<p>Nhận key game miễn phí khi hệ thống có key hợp lệ.</p>
-<button onclick="alert('Chức năng lấy key sẽ được kết nối sau!')">LẤY KEY MIỄN PHÍ</button>
+<h2>🛒 Chọn key game</h2>
+<label>Chọn game</label>
+<select id="game">
+<option>Free Fire</option>
+<option>Liên Quân Mobile</option>
+<option>PUBG Mobile</option>
+<option>Roblox</option>
+<option>Minecraft</option>
+<option>Game khác</option>
+</select>
+<label>Loại key</label>
+<select id="type">
+<option value="20000">Key cơ bản - 20.000đ</option>
+<option value="50000">Key nâng cao - 50.000đ</option>
+<option value="100000">Key VIP - 100.000đ</option>
+</select>
+<p id="price">Giá: 20.000đ</p>
+<label>Tên Telegram hoặc username</label>
+<input id="user" placeholder="@username Telegram">
+<button onclick="order()">TẠO ĐƠN HÀNG</button>
 </div>
+
 <div class="card">
-<h3>🛒 Mua key tất cả game</h3>
-<p>Free Fire, Liên Quân và các game khác.</p>
-<button onclick="alert('Danh sách game và giá sẽ được thêm sau!')">XEM DANH SÁCH KEY</button>
+<h2>🏦 Thanh toán chuyển khoản</h2>
+<p>Ngân hàng: BẠN ĐIỀN TÊN NGÂN HÀNG</p>
+<p>Số tài khoản: BẠN ĐIỀN SỐ TÀI KHOẢN</p>
+<p>Chủ tài khoản: BẠN ĐIỀN TÊN CHỦ TÀI KHOẢN</p>
+<p>Chuyển khoản với nội dung mã đơn hàng được tạo.</p>
+<p>Sau khi kiểm tra tiền vào tài khoản, bạn tự gửi key cho khách.</p>
 </div>
+
 <div class="card">
-<h3>📋 Kiểm tra đơn hàng</h3>
-<p>Tra cứu đơn hàng đã mua.</p>
-<button onclick="alert('Chức năng kiểm tra đơn sẽ được kết nối sau!')">KIỂM TRA ĐƠN</button>
+<h2>📌 Hướng dẫn</h2>
+<p>Đơn hàng tạo trên trang này chỉ hiển thị trên thiết bị hiện tại, chưa được gửi về hệ thống quản lý.</p>
+<p>Chỉ thanh toán sau khi bạn đã điền và kiểm tra chính xác thông tin tài khoản.</p>
 </div>
-<p style="text-align:center;font-size:12px">QH Link Bypass © 2026</p>
+
+<script>
+const type=document.getElementById('type');
+type.onchange=()=>document.getElementById('price').textContent='Giá: '+Number(type.value).toLocaleString('vi-VN')+'đ';
+function order(){
+ const game=document.getElementById('game').value;
+ const user=document.getElementById('user').value.trim();
+ if(!user){alert('Hãy nhập username Telegram để nhận key.');return;}
+ const id='QH'+Date.now().toString().slice(-8);
+ const price=Number(type.value).toLocaleString('vi-VN')+'đ';
+ alert('Mã đơn: '+id+'\nGame: '+game+'\nGiá: '+price+'\nTelegram: '+user+'\n\nHãy chuyển khoản theo thông tin người bán cung cấp và gửi mã đơn cho người bán để xác nhận.');
+}
+</script>
 </body>
 </html>
